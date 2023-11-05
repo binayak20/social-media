@@ -9,6 +9,7 @@ import { IUpdatePost, INewPost, INewUser, IUpdateUser } from "@/types";
 
 // ============================== SIGN UP
 export async function createUserAccount(user: INewUser) {
+  console.log("User:", user);
   try {
     const newAccount = await account.create(
       ID.unique(),
@@ -16,7 +17,7 @@ export async function createUserAccount(user: INewUser) {
       user.password,
       user.name
     );
-
+    console.log("newAccount:", newAccount);
     if (!newAccount) throw Error;
 
     const avatarUrl = avatars.getInitials(user.name);
